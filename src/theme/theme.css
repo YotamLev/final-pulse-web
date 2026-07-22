@@ -146,6 +146,20 @@ a {
     border-right: none;
     border-bottom: 1px solid var(--sidebar-border);
   }
+  .app-main {
+    padding: 1rem;
+  }
+}
+
+/* Every multi-column layout in this app (skill/asset rows, trait card grids,
+   stage nav, action-button rows) is set via inline gridTemplateColumns with
+   a desktop-appropriate ratio. None of them should stay side-by-side on a
+   narrow phone screen, so collapse all of them to a single stacked column
+   below this breakpoint instead of hand-tuning ~40 individual call sites. */
+@media (max-width: 560px) {
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* ── Hero ─────────────────────────────────────────────────────────────────── */
@@ -390,6 +404,8 @@ textarea:focus {
 table.data-table {
   width: 100%;
   border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
 }
 
 table.data-table th {
