@@ -3,6 +3,7 @@ import { useNavStore } from "../../state/navStore"
 import { SectionHeader } from "../../components/SectionHeader"
 import { InfoBox } from "../../components/InfoBox"
 import { CLANS, getEligibleClans } from "../../data/clans"
+import { Icon } from "../../components/Icon"
 
 export function Stage4Clan() {
   const character = useCharacterStore((s) => s.character)
@@ -52,16 +53,19 @@ export function Stage4Clan() {
               {clanName}
             </summary>
             <div style={{ marginTop: "0.5rem" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "4fr", gap: "0.5rem" }}>
-                <em>{clan.description}</em>
+              <div style={{ display: "grid", gridTemplateColumns: "auto 4fr", gap: "0.75rem", alignItems: "start" }}>
+                <Icon src={clan.image} size={64} />
                 <div>
-                  <strong>Recruitment:</strong> {clan.recruitment}
-                </div>
-                <div>
-                  <strong>Bonus:</strong> {clan.bonus}
-                </div>
-                <div>
-                  <strong>Suggested Disciplines:</strong> {clan.suggested_disciplines.join(", ")}
+                  <em>{clan.description}</em>
+                  <div>
+                    <strong>Recruitment:</strong> {clan.recruitment}
+                  </div>
+                  <div>
+                    <strong>Bonus:</strong> {clan.bonus}
+                  </div>
+                  <div>
+                    <strong>Suggested Disciplines:</strong> {clan.suggested_disciplines.join(", ")}
+                  </div>
                 </div>
               </div>
 

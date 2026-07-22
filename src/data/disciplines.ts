@@ -14,7 +14,7 @@ export interface Discipline {
 
 export const DISCIPLINES: Record<string, Discipline> = {
   Auspex: {
-    image: "Data/Images/Auspex_symbol.png",
+    image: "/images/Auspex_symbol.png",
     powers: [
       { name: "Enhance Senses", level: 1, description: "Add Auspex level to sensory input: seeing, hearing, etc.", requires: null },
       { name: "Sense The Unseen", level: 1, description: "Roll Auspex to find hidden and invisible creatures or objects.", requires: null },
@@ -30,7 +30,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Animalism: {
-    image: "Data/Images/Animalism_symbol.png",
+    image: "/images/Animalism_symbol.png",
     powers: [
       { name: "Ghoul Animal", level: 1, description: "Pay 1 Blood to ghoul an animal to serve you. Up to Animalism level simultaneously. Wants to serve like a loyal dog but no greater intelligence.", requires: null },
       { name: "Mark Territory", level: 1, description: "Pay 1 Blood in a place you own to impose difficulty on rivals in it.", requires: null },
@@ -45,7 +45,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Celerity: {
-    image: "Data/Images/Celerity_symbol.png",
+    image: "/images/Celerity_symbol.png",
     powers: [
       { name: "Speed", level: 1, description: "Add Celerity level to rolls involving speed: running, slashing, dodging. Add half Celerity (rounded down) to rolls of precision.", requires: null },
       { name: "Blink", level: 2, description: "Pay 1 Blood, move super-fast in your turn: walk on water, on vertical walls, between the blades of a spinning jet engine.", requires: null },
@@ -57,7 +57,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Dominate: {
-    image: "Data/Images/Dominate_symbol.png",
+    image: "/images/Dominate_symbol.png",
     powers: [
       { name: "Draw On Instinct", level: 1, description: "Cause a mortal to obey a simple command that is some form of: Flee ('run away!'), Freeze ('kneel before me,'), or Fight ('shoot that guy!').", requires: null },
       { name: "Cloud Mind", level: 1, description: "Cause a mortal to forget the last 5 minutes and the next 2 minutes.", requires: null },
@@ -71,7 +71,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Fortitude: {
-    image: "Data/Images/Fortitude_symbol.png",
+    image: "/images/Fortitude_symbol.png",
     powers: [
       { name: "Rapid Healing", level: 1, description: "Each 1 Blood paid allows healing 2 HP instead of 1.", requires: null },
       { name: "Toughness", level: 1, description: "Add 2 max HP per level of Fortitude.", requires: null },
@@ -85,7 +85,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Nightmare: {
-    image: "Data/Images/nightmare.png",
+    image: "/images/nightmare.png",
     powers: [
       { name: "Haunting Dream", level: 1, description: "This power has 2 uses, depending on target: mortals, either sleeping or awake. For sleeping mortals, this power lets the vampire to appear in a mortal's dreams, affecting them, creating any effect the vampire desires. The mortal can be specific, or the vampire can search for someone with characteristics, such as: a rich person, a loyal servant, a young man. Very specific, or very distant mortals might be harder to reach. For waking mortals, this power can cause them to believe something unnatural they witnessed is a dream or hallucination.", requires: null },
       { name: "Lullaby", level: 1, description: "Put an unsuspecting mortal to sleep. You can pay 1 Blood and affect a group of mortals. Suspecting mortals or stressful environments may require a Nightmare roll.", requires: null },
@@ -100,7 +100,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Obfuscate: {
-    image: "Data/Images/Obfuscate_symbol.png",
+    image: "/images/Obfuscate_symbol.png",
     powers: [
       { name: "Fade", level: 1, description: "Low-level hypnotism makes all mortals avert their eyes and ignore you, seeing you as a forgettable nobody.", requires: null },
       { name: "Cloak of Shadows", level: 1, description: "Standing still or moving obscured against a backdrop allows you to be totally ignored by mortals — they see you as an object or vegetation.", requires: null },
@@ -113,7 +113,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Potence: {
-    image: "Data/Images/Potence_symbol.png",
+    image: "/images/Potence_symbol.png",
     powers: [
       { name: "Vigor", level: 1, description: "Add Potence to rolls involving strength and muscles: swinging a sword, jumping, bending metal.", requires: null },
       { name: "Shockwave", level: 2, description: "Pay 1 Blood, your attacks count against all in close-range to you instead of choosing 1 enemy.", requires: null },
@@ -123,7 +123,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Presence: {
-    image: "Data/Images/Presence_symbol.png",
+    image: "/images/Presence_symbol.png",
     powers: [
       { name: "Awe", level: 1, description: "Add Presence to Social rolls.", requires: null },
       { name: "Summon", level: 1, description: "Call a mortal you know to you. They will do all in their power to reach you.", requires: null },
@@ -136,7 +136,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Protean: {
-    image: "Data/Images/Protean_symbol.png",
+    image: "/images/Protean_symbol.png",
     powers: [
       { name: "Animorph", level: 1, description: "Pay 1 Blood, assume the shape of an animal (mouse to tiger) for a scene. Transforming takes a turn.", requires: null },
       { name: "Feral Weapons", level: 1, description: "Extend fangs and claws, add your Protean to close-range physical attacks.", requires: null },
@@ -150,7 +150,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Arrete: {
-    image: "Data/Images/Alchemy_symbol.png",
+    image: "/images/Alchemy_symbol.png",
     powers: [
       { name: "Calculating", level: 1, description: "Add your Arrete to mental actions requiring intelligence, typically in the Scheming Skill Tree.", requires: null },
       { name: "Perfect Recall", level: 1, description: "Pay 1 Blood, retroactively remember a detail from something you have seen, heard, or read.", requires: null },
@@ -161,7 +161,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Necromancy: {
-    image: "Data/Images/Necromancy.png",
+    image: "/images/Necromancy.png",
     powers: [
       { name: "Touch of Oblivion", level: 1, description: "Pay 1 Blood, cripple and age a body part with a single touch. Roll Necromancy and relevant skills to touch an unwilling creature.", requires: null },
       { name: "Ashes to Ashes", level: 1, description: "Turn a body to fine ash, eliminating all blood and gore. Can be used on rival zombies.", requires: null },
@@ -173,7 +173,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   Druidic: {
-    image: "Data/Images/Druidic.png",
+    image: "/images/Druidic.png",
     powers: [
       { name: "Frost Touch", level: 1, description: "Chill objects, freeze areas of water, or inflict frostbite with a touch.", requires: null },
       { name: "Disband Beasts", level: 1, description: "Roll Druidic to counter Animalism powers.", requires: null },
@@ -188,7 +188,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   "Blood Sorcery": {
-    image: "Data/Images/Blood_Sorcery_symbol.png",
+    image: "/images/Blood_Sorcery_symbol.png",
     powers: [
       { name: "Bend Blood", level: 1, description: "Control spilled blood, making it flow or float in the air. Up to 2 Liters at a time, and the max force it can apply is 3 kg.", requires: null },
       { name: "A Taste for Blood", level: 1, description: "By tasting blood, detect many facts: age, birthplace, Sire (if Vampire), Disciplines (if Vampire), emotions when blood was spilled. Additional facts may require a Blood Sorcery roll.", requires: null },
@@ -200,7 +200,7 @@ export const DISCIPLINES: Record<string, Discipline> = {
     ],
   },
   "Shadow Sorcery": {
-    image: "Data/Images/Oblivion_symbol.png",
+    image: "/images/Oblivion_symbol.png",
     powers: [
       { name: "Dim the Lights", level: 1, description: "Cause lights to dim or flicker, subject to your control.", requires: null },
       { name: "Shadow Perspective", level: 1, description: "Look into a shadow and see from another shadow nearby.", requires: null },

@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useCharacterStore } from "../../state/characterStore"
 import { QUICKSTARTS, applyQuickstart } from "./quickstarts"
 import { dotsString } from "../../components/Dots"
+import { Icon } from "../../components/Icon"
+import { CLANS } from "../../data/clans"
 
 export function QuickstartPanel() {
   const character = useCharacterStore((s) => s.character)
@@ -41,8 +43,10 @@ export function QuickstartPanel() {
                 key={key}
                 type="button"
                 className={selected === key ? "btn btn-primary" : "btn btn-secondary"}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.3rem" }}
                 onClick={() => setSelected(key)}
               >
+                <Icon src={CLANS[QUICKSTARTS[key].clan]?.image ?? ""} size={40} />
                 {QUICKSTARTS[key].label}
               </button>
             ))}

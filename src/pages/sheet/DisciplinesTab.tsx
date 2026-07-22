@@ -2,6 +2,7 @@ import { useCharacterStore } from "../../state/characterStore"
 import { SectionHeader } from "../../components/SectionHeader"
 import { InfoBox } from "../../components/InfoBox"
 import { Dots } from "../../components/Dots"
+import { Icon } from "../../components/Icon"
 import { DISCIPLINES, getAvailablePowers, totalDiscXp, xpCostForDiscLevel, type Discipline } from "../../data/disciplines"
 import { CREATION_DISC_XP, canSpendDiscXp, getEarnedXpAvailable, logXpSpend, logXpRefund } from "../../models/character"
 
@@ -86,7 +87,10 @@ function DisciplineEditor({ discName }: { discName: string }) {
 
   return (
     <div>
-      <h3>{discName}</h3>
+      <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "0.75rem", alignItems: "center" }}>
+        <Icon src={disc.image} size={48} />
+        <h3 style={{ margin: 0 }}>{discName}</h3>
+      </div>
       <div style={{ display: "grid", gridTemplateColumns: "4fr 1fr 1fr", gap: "0.5rem", alignItems: "center" }}>
         <div>
           <div>

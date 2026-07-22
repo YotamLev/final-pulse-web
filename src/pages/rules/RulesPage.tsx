@@ -158,6 +158,9 @@ export function RulesPage() {
           corresponds to blank on black &amp; red dice, "6-9" corresponds to success on black &amp; red dice, and "0" corresponds to critical success on
           black &amp; red dice.
         </p>
+        <div style={{ textAlign: "center" }}>
+          <img src="/images/dice_cheat_sheet.png" alt="Dice cheat sheet" style={{ maxWidth: "100%", width: 500, borderRadius: 4 }} />
+        </div>
       </div>
 
       <div className="panel" id="hunger" style={{ marginBottom: "1.5rem" }}>

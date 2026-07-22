@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { DISCIPLINES, DISC_SHORT_DESC, ALL_DISCIPLINE_NAMES } from "../../data/disciplines"
+import { Icon } from "../../components/Icon"
 
 export function DisciplinesSection() {
   const [filter, setFilter] = useState("all")
@@ -35,7 +36,10 @@ export function DisciplinesSection() {
         }
         return (
           <div key={discName} style={{ marginTop: "1rem" }}>
-            <h3>{discName}</h3>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+              <Icon src={disc.image} size={44} />
+              <h3 style={{ margin: 0 }}>{discName}</h3>
+            </div>
             <p className="caption">{DISC_SHORT_DESC[discName]}</p>
             <ul>
               {[...byLevel.keys()].sort((a, b) => a - b).map((lvl) => (

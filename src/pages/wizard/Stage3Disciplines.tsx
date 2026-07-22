@@ -1,6 +1,7 @@
 import { useCharacterStore } from "../../state/characterStore"
 import { SectionHeader } from "../../components/SectionHeader"
 import { Dots } from "../../components/Dots"
+import { Icon } from "../../components/Icon"
 import {
   DISCIPLINES,
   ALL_DISCIPLINE_NAMES,
@@ -95,7 +96,10 @@ function DisciplineEditor({ discName, budgetRemaining }: { discName: string; bud
 
   return (
     <div>
-      <h3>{discName}</h3>
+      <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "0.75rem", alignItems: "center" }}>
+        <Icon src={disc.image} size={48} />
+        <h3 style={{ margin: 0 }}>{discName}</h3>
+      </div>
       <div style={{ display: "grid", gridTemplateColumns: "4fr 1fr 1fr", gap: "0.5rem", alignItems: "center" }}>
         <div>
           Level: {level} / 5 <Dots current={level} max={5} />
@@ -188,6 +192,7 @@ function SelectDisciplines() {
                 key={discName}
                 className="btn btn-secondary"
                 title={desc}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.3rem" }}
                 onClick={() =>
                   updateCharacter((c) => {
                     c.unlocked_disciplines = c.unlocked_disciplines.filter((d) => d !== discName)
@@ -197,7 +202,7 @@ function SelectDisciplines() {
                   })
                 }
               >
-                ✓ {discName}
+                <Icon src={DISCIPLINES[discName].image} size={40} />✓ {discName}
               </button>
             )
           }
@@ -206,6 +211,7 @@ function SelectDisciplines() {
               key={discName}
               className="btn btn-secondary"
               title={desc}
+              style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.3rem" }}
               disabled={remainingSlots === 0}
               onClick={() =>
                 updateCharacter((c) => {
@@ -215,6 +221,7 @@ function SelectDisciplines() {
                 })
               }
             >
+              <Icon src={DISCIPLINES[discName].image} size={40} />
               {discName}
             </button>
           )

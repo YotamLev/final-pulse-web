@@ -34,7 +34,7 @@ export interface EligibilityCharacter {
 
 export const CLANS: Record<string, Clan> = {
   Ventrue: {
-    image: "Data/Images/Ventrue_symbol.png",
+    image: "/images/Ventrue_symbol.png",
     description: "The self-styled rulers of vampire society, masters of control, who believe it is their birthright to lead.",
     recruitment: "Generals, Lords, Gang Leaders",
     requirements: {
@@ -45,7 +45,7 @@ export const CLANS: Record<string, Clan> = {
     suggested_disciplines: ["Fortitude", "Presence"],
   },
   Dracul: {
-    image: "Data/Images/Tzimisce_symbol.png",
+    image: "/images/Tzimisce_symbol.png",
     description: "The main competitors of the Ventrue, fiercely stubborn. Known to ruin potential Embracees' lives to 'test' whether they are cut out for the Clan.",
     recruitment: "Crusaders, Fierce Nationalists, Merchant Princes",
     requirements: {
@@ -55,7 +55,7 @@ export const CLANS: Record<string, Clan> = {
     suggested_disciplines: ["Dominate", "Protean", "Potence"],
   },
   Toreador: {
-    image: "Data/Images/Toreador_symbol.png",
+    image: "/images/Toreador_symbol.png",
     description: "Connoisseurs of ascendant beauty and emotion, drawn irresistibly to the artistic and the sublime.",
     recruitment: "Artists, Diplomats, Charismatic Clergy",
     requirements: {
@@ -66,7 +66,7 @@ export const CLANS: Record<string, Clan> = {
     suggested_disciplines: ["Auspex", "Celerity"],
   },
   Nosferatu: {
-    image: "Data/Images/Nosferatu_symbol.png",
+    image: "/images/Nosferatu_symbol.png",
     description: "Hidden eyes and ears of the vampire world, cursed with a grotesque appearance that separates them from mortal society.",
     recruitment: "Spymasters, Assassins, Mercenaries",
     requirements: {
@@ -77,7 +77,7 @@ export const CLANS: Record<string, Clan> = {
     suggested_disciplines: ["Nightmare", "Shadow Sorcery", "Animalism"],
   },
   Brujah: {
-    image: "Data/Images/Brujah_symbol.png",
+    image: "/images/Brujah_symbol.png",
     description: "Philosophers, fighters, rebels, gladiators. A history of great thinkers, generals, and revolutionaries.",
     recruitment: "Anarchists, Soldiers, Disloyal Knights",
     requirements: {
@@ -88,7 +88,7 @@ export const CLANS: Record<string, Clan> = {
     suggested_disciplines: ["Presence", "Potence", "Celerity"],
   },
   Gangrel: {
-    image: "Data/Images/Gangrel_symbol.png",
+    image: "/images/Gangrel_symbol.png",
     description: "Wild vampires described as closest to their Beast, who maintain they are simply best at interacting with it.",
     recruitment: "Survivalists, Conquistadors, Raiders",
     requirements: {
@@ -99,7 +99,7 @@ export const CLANS: Record<string, Clan> = {
     suggested_disciplines: ["Animalism", "Protean", "Fortitude"],
   },
   Malkavian: {
-    image: "Data/Images/Malkavian_symbol.png",
+    image: "/images/Malkavian_symbol.png",
     description: "Afflicted by a supernatural madness — the clan of seers and oracles. The most heterogeneous clan.",
     recruitment: "Odd Scientists, Genius Detectives, Shamans",
     requirements: {
@@ -109,7 +109,7 @@ export const CLANS: Record<string, Clan> = {
     suggested_disciplines: ["Auspex", "Nightmare", "Arrete"],
   },
   Tremere: {
-    image: "Data/Images/Tremere_symbol.png",
+    image: "/images/Tremere_symbol.png",
     description: "Mages who sought immortality. In their greed, they instigated a terrifying magical experiment, damning themselves to a hell of their own making.",
     recruitment: "Occultists, Pagans, Academics",
     requirements: {
@@ -120,7 +120,7 @@ export const CLANS: Record<string, Clan> = {
     suggested_disciplines: ["Auspex", "Arrete"],
   },
   Hecata: {
-    image: "Data/Images/Hecata_symbol.png",
+    image: "/images/Hecata_symbol.png",
     description: "A strange clan steeped in death, practising the arts of necromancy. Favors Embracing from their own mortal family or those with useful outside connections.",
     recruitment: "Bankers, Arms Dealers, Monks",
     requirements: {

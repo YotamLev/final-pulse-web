@@ -1,5 +1,6 @@
 import { CLANS } from "../../data/clans"
 import { reqText } from "./ruleText"
+import { Icon } from "../../components/Icon"
 
 export function ClansSection() {
   return (
@@ -12,7 +13,10 @@ export function ClansSection() {
 
       {Object.entries(CLANS).map(([name, c]) => (
         <div key={name} className="card" style={{ marginBottom: "1rem" }}>
-          <h3>{name}</h3>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+            <Icon src={c.image} size={48} />
+            <h3 style={{ margin: 0 }}>{name}</h3>
+          </div>
           <p>
             <em>{c.description}</em>
           </p>
