@@ -4,6 +4,8 @@ import { useNavStore, type NavPage } from "./state/navStore"
 import { CharacterSheet } from "./pages/sheet/CharacterSheet"
 import { Wizard } from "./pages/wizard/Wizard"
 import { STAGES } from "./pages/wizard/WizardNav"
+import { Struggle } from "./pages/struggle/Struggle"
+import { RulesPage } from "./pages/rules/RulesPage"
 
 const NAV_OPTIONS: { id: NavPage; label: string }[] = [
   { id: "wizard", label: "⚡ Character Creator" },
@@ -11,18 +13,6 @@ const NAV_OPTIONS: { id: NavPage; label: string }[] = [
   { id: "struggle", label: "♟ Struggle" },
   { id: "rules", label: "📖 Rules" },
 ]
-
-function ComingSoon({ title }: { title: string }) {
-  return (
-    <div>
-      <div className="pulse-hero">
-        <h1>{title}</h1>
-        <div className="subtitle">Coming soon</div>
-      </div>
-      <p>This section hasn't been built yet in the rebuild.</p>
-    </div>
-  )
-}
 
 function Sidebar() {
   const character = useCharacterStore((s) => s.character)
@@ -128,8 +118,8 @@ function App() {
         <Hero />
         {page === "wizard" && <Wizard />}
         {page === "sheet" && <CharacterSheet />}
-        {page === "struggle" && <ComingSoon title="Struggle" />}
-        {page === "rules" && <ComingSoon title="Rules" />}
+        {page === "struggle" && <Struggle />}
+        {page === "rules" && <RulesPage />}
       </main>
     </div>
   )
