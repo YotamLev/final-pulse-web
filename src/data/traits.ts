@@ -1,0 +1,550 @@
+// Mortal and Vampire trait definitions for Final Pulse 2E.
+
+export type MortalCategory = "mental" | "body" | "personality" | "sensory"
+
+export interface TraitDef {
+  key: string
+  name: string
+  category?: MortalCategory
+  cost: number | null
+  variableCost?: boolean
+  costOptions?: [number, string][]
+  maxTimes?: number
+  description: string
+  requiresDetail?: boolean
+  detailPrompt?: string
+  requiresSubChoice?: boolean
+  subOptions?: string[]
+}
+
+// A trait instance as stored on a character: the def's key/name/description
+// plus the concrete cost/detail/sub_choice chosen at pick time.
+export interface TraitInstance {
+  key: string
+  name: string
+  cost: number
+  detail?: string | null
+  sub_choice?: string | null
+  custom?: boolean
+}
+
+export const MORTAL_TRAITS: TraitDef[] = [
+  {
+    key: "specialist",
+    name: "Specialist",
+    category: "mental",
+    cost: 1,
+    maxTimes: 2,
+    description: "Expertise in a narrow field. Gain +1 whenever you roll using this expertise.",
+    requiresDetail: true,
+    detailPrompt: "Describe the expertise (e.g., Epidemiology, Celtic History):",
+  },
+  {
+    key: "rare_specialist",
+    name: "Rare Specialist",
+    category: "mental",
+    cost: 2,
+    maxTimes: 2,
+    description: "Rare expertise in a narrow field. Gain +2 whenever you roll using this expertise.",
+    requiresDetail: true,
+    detailPrompt: "Describe the rare expertise:",
+  },
+  {
+    key: "world_renowned_specialist",
+    name: "World-Renowned Specialist",
+    category: "mental",
+    cost: 4,
+    maxTimes: 1,
+    description: "World-renowned expertise. Gain +3 whenever you roll using this expertise. Can be taken once.",
+    requiresDetail: true,
+    detailPrompt: "Describe the world-renowned expertise:",
+  },
+  {
+    key: "medical_condition",
+    name: "Medical Condition",
+    category: "body",
+    cost: null,
+    variableCost: true,
+    costOptions: [
+      [-1, "Minor — very short-sighted, stammer, limp"],
+      [-2, "Moderate — missing limb, loss of hearing"],
+      [-3, "Severe — wheelchair bound, blindness"],
+    ],
+    description: "A medical condition the Embrace did not fix. Relevant rolls will be impeded.",
+    requiresDetail: true,
+    detailPrompt: "Describe the condition:",
+  },
+  {
+    key: "brave",
+    name: "Brave",
+    category: "personality",
+    cost: 2,
+    description: "Add +2 to rolls involving resisting fear.",
+  },
+  {
+    key: "natural_leader",
+    name: "Natural Leader",
+    category: "personality",
+    cost: 3,
+    description: "Add +2 to rolls involving leadership.",
+  },
+  {
+    key: "compulsion",
+    name: "Compulsion",
+    category: "personality",
+    cost: -1,
+    description: "A persistent mundane habit or fixation. Resisting tempting opportunities requires a roll.",
+    requiresDetail: true,
+    detailPrompt: "Describe the compulsion (e.g., gambling, collecting, ritual cleanliness):",
+  },
+  {
+    key: "distinctive_appearance",
+    name: "Distinctive Appearance",
+    category: "body",
+    cost: -1,
+    description: "A conspicuous, memorable feature. Attempts to identify or track you gain +1. Disguises must conceal this.",
+    requiresDetail: true,
+    detailPrompt: "Describe the distinctive feature (e.g., facial scarring, unusual pigmentation):",
+  },
+  {
+    key: "illiterate",
+    name: "Illiterate",
+    category: "mental",
+    cost: -2,
+    description: "Cannot read or write fluently. May recognize familiar signs but cannot reliably understand written material.",
+  },
+  {
+    key: "addiction",
+    name: "Addiction",
+    category: "personality",
+    cost: null,
+    variableCost: true,
+    costOptions: [
+      [-1, "Deprivation makes you distracted and irritable, impeding relevant rolls"],
+      [-2, "Prolonged deprivation also prevents recovering Willpower until you indulge"],
+    ],
+    description: "Dependent on a mundane substance or behavior.",
+    requiresDetail: true,
+    detailPrompt: "Describe the addiction:",
+  },
+  {
+    key: "phobia",
+    name: "Phobia",
+    category: "mental",
+    cost: null,
+    variableCost: true,
+    costOptions: [
+      [-1, "Confronting it impedes relevant rolls"],
+      [-2, "Must also succeed on a roll to willingly approach or remain near it"],
+    ],
+    description: "Intense, irrational fear of a specific stimulus.",
+    requiresDetail: true,
+    detailPrompt: "Describe the phobia (e.g., enclosed spaces, heights, deep water):",
+  },
+  {
+    key: "famous",
+    name: "Famous",
+    category: "personality",
+    cost: 1,
+    description: "Publicly known before the Embrace. Reputation opens doors but strangers may recognize you.",
+    requiresDetail: true,
+    detailPrompt: "What were you famous for?",
+  },
+  {
+    key: "beautiful",
+    name: "Beautiful",
+    category: "body",
+    cost: 2,
+    description: "Exceptionally attractive. Gain +1 on first-impression rolls where physical appeal is relevant.",
+  },
+  {
+    key: "large",
+    name: "Large",
+    category: "body",
+    cost: 1,
+    description: "Exceptionally tall and heavily built. Gain +1 when size helps with lifting, blocking, or intimidation.",
+  },
+  {
+    key: "dwarfism",
+    name: "Dwarfism",
+    category: "body",
+    cost: 0,
+    description: "Significantly shorter than average. Gain +1 when size helps you hide or squeeze through confined spaces.",
+  },
+  {
+    key: "criminal_record",
+    name: "Criminal Record",
+    category: "personality",
+    cost: -1,
+    description: "Serious criminal history. Official scrutiny involving your mortal identity is more likely to escalate.",
+  },
+  {
+    key: "double_jointed",
+    name: "Double-Jointed",
+    category: "body",
+    cost: 1,
+    description: "Unusually flexible joints. Gain +1 when escaping restraints, contorting through confined spaces.",
+  },
+  {
+    key: "sterile",
+    name: "Sterile / Eunuch",
+    category: "body",
+    cost: 0,
+    description: "Infertile or castrated before the Embrace. No mechanical effect, but shapes your mortal history.",
+  },
+  {
+    key: "embraced_young",
+    name: "Embraced Young",
+    cost: -1,
+    description: "Embraced before physical adulthood. Adults often dismiss your authority; age-restricted access is difficult.",
+  },
+  {
+    key: "embraced_old",
+    name: "Embraced Old",
+    cost: -1,
+    description: "Embraced at an advanced age. Others underestimate or patronize you.",
+  },
+  {
+    key: "perfect_pitch",
+    name: "Perfect Pitch",
+    category: "sensory",
+    cost: 1,
+    description: "Can identify and reproduce musical notes without a reference. Gain +1 when directly relevant.",
+  },
+  {
+    key: "color_blindness",
+    name: "Color Blindness",
+    category: "sensory",
+    cost: -1,
+    description: "Cannot reliably distinguish colors. Rolls involving color-coded information are impeded when color matters.",
+  },
+  {
+    key: "face_blindness",
+    name: "Face Blindness",
+    category: "mental",
+    cost: -1,
+    description: "Struggles to recognize people by faces. Rolls involving identifying individuals by appearance are impeded.",
+  },
+  {
+    key: "tetrachromat",
+    name: "Tetrachromat",
+    category: "sensory",
+    cost: 1,
+    description: "Perceive subtle color differences most cannot. Gain +1 when examining dyes, bruising, forged artwork.",
+  },
+  {
+    key: "aphantasia",
+    name: "Aphantasia",
+    category: "mental",
+    cost: -1,
+    description: "Cannot voluntarily form mental images. Rolls depending on visualizing a remembered face, place, or scene are impeded.",
+  },
+  {
+    key: "unerring_direction",
+    name: "Unerring Sense of Direction",
+    category: "sensory",
+    cost: 1,
+    description: "Always knows cardinal directions. Gain +1 when navigating or estimating relative positions.",
+  },
+  {
+    key: "genius",
+    name: "Genius",
+    category: "mental",
+    cost: 3,
+    description: "Exceptional general intelligence. Gain +1 on abstract reasoning, rapid learning, complex problem-solving.",
+  },
+  {
+    key: "iron_constitution",
+    name: "Iron Constitution",
+    category: "body",
+    cost: 2,
+    description: "Exceptionally resistant to poison, disease, exhaustion. Gain +1 HP and +1 to rolls to muddle through.",
+  },
+  {
+    key: "perfect_balance",
+    name: "Perfect Balance",
+    category: "body",
+    cost: 2,
+    description: "Extraordinary sense of balance. Gain +2 on rolls to keep footing, move across unstable surfaces.",
+  },
+  {
+    key: "lightning_reflexes",
+    name: "Lightning Reflexes",
+    category: "body",
+    cost: 3,
+    description: "Exceptionally fast reactions. Gain +1 to rolls involving sudden danger, avoiding ambushes, or reacting quickly.",
+  },
+  {
+    key: "cowardly",
+    name: "Cowardly",
+    category: "personality",
+    cost: -2,
+    description: "Unusually vulnerable to fear and panic. Suffer -2 on rolls to resist fear; when failed, instinctively flee or freeze.",
+  },
+  {
+    key: "amnesiac",
+    name: "Amnesiac",
+    category: "mental",
+    cost: -2,
+    description: "Large parts of mortal life are missing. Rolls depending on personal history are impeded.",
+  },
+  {
+    key: "bad_liar",
+    name: "Bad Liar",
+    category: "personality",
+    cost: -2,
+    description: "Visibly uncomfortable when lying. Rolls to tell a direct lie are impeded. Evasion and omission are unaffected.",
+  },
+  {
+    key: "night_blindness",
+    name: "Night Blindness",
+    cost: -3,
+    description: "Exceptionally poor vision in dim light. Unless brightly lit, visual rolls are impeded.",
+  },
+  {
+    key: "ugly",
+    name: "Ugly",
+    category: "body",
+    cost: -2,
+    description: "Notably unpleasant appearance. Rolls relying on physical attractiveness or favorable first impressions are impeded.",
+  },
+  {
+    key: "chronic_pain",
+    name: "Chronic Pain",
+    category: "body",
+    cost: -2,
+    description: "Persistent pain the Embrace did not cure. During demanding scenes, one relevant roll may be impeded.",
+  },
+  {
+    key: "innumerate",
+    name: "Innumerate",
+    category: "mental",
+    cost: -2,
+    description: "Severe difficulty with numbers and arithmetic. Rolls involving accounts, prices, or calculations are impeded.",
+  },
+  {
+    key: "severe_allergy",
+    name: "Severe Allergy",
+    category: "body",
+    cost: -2,
+    description: "A dangerous allergy retained from mortal life. Exposure to the trigger causes serious impairment.",
+    requiresDetail: true,
+    detailPrompt: "Describe the allergen (e.g., nuts, latex, insect venom):",
+  },
+  {
+    key: "dyslexia",
+    name: "Dyslexia",
+    category: "mental",
+    cost: -2,
+    description: "Severe difficulty reading quickly. Rolls involving written records, codes, or time-sensitive reading are impeded.",
+  },
+  {
+    key: "severe_motion_sickness",
+    name: "Severe Motion Sickness",
+    category: "body",
+    cost: -1,
+    description: "Becomes disoriented in moving vehicles. Relevant rolls are impeded during travel and shortly afterward.",
+  },
+  {
+    key: "paranoid",
+    name: "Paranoid",
+    category: "mental",
+    cost: -2,
+    description: "Habitually perceives hidden threats and betrayal. Rolls to accurately judge trustworthiness are impeded.",
+  },
+  {
+    key: "dissociative_episodes",
+    name: "Dissociative Episodes",
+    category: "mental",
+    cost: -2,
+    description: "Under severe stress, becomes detached from surroundings. Awareness, memory, and social rolls are impeded.",
+  },
+  {
+    key: "depressive_episodes",
+    name: "Depressive Episodes",
+    category: "mental",
+    cost: -2,
+    description: "Periodically falls into profound hopelessness. Rolls requiring initiative or sustained effort are impeded.",
+  },
+  {
+    key: "manic_episodes",
+    name: "Manic Episodes",
+    category: "mental",
+    cost: -2,
+    description: "Periodic extreme energy and reduced judgment. Rolls to resist risky opportunities are impeded during episodes.",
+  },
+  {
+    key: "psychotic_episodes",
+    name: "Psychotic Episodes",
+    category: "mental",
+    cost: -3,
+    description: "Under severe stress, may experience hallucinations or delusions. Rolls to correctly interpret events are impeded.",
+  },
+  {
+    key: "selective_mutism",
+    name: "Selective Mutism",
+    category: "mental",
+    cost: -2,
+    description: "In certain social situations becomes unable to speak. During such episodes, verbal social actions are impossible.",
+  },
+  {
+    key: "panic_disorder",
+    name: "Panic Disorder",
+    category: "mental",
+    cost: -2,
+    description: "Under intense stress, may suffer a panic attack. Rolls requiring concentration or calm interaction are impeded.",
+  },
+  {
+    key: "ptsd",
+    name: "Post-Traumatic Stress",
+    category: "mental",
+    cost: -2,
+    description: "Choose a trigger category. When confronted, rolls to remain composed or act against the trigger are impeded.",
+    requiresDetail: true,
+    detailPrompt: "Describe the trauma trigger (e.g., fire, captivity, medical procedures):",
+  },
+  {
+    key: "delusional_belief",
+    name: "Delusional Belief",
+    category: "mental",
+    cost: -2,
+    description: "One fixed false belief that resists evidence. When relevant, rolls to interpret events objectively are impeded.",
+    requiresDetail: true,
+    detailPrompt: "Describe the delusion:",
+  },
+]
+
+// Mortal trait keys that qualify as mental illness (Malkavian requirement)
+export const MENTAL_ILLNESS_KEYS: Set<string> = new Set([
+  "paranoid",
+  "dissociative_episodes",
+  "depressive_episodes",
+  "manic_episodes",
+  "psychotic_episodes",
+  "panic_disorder",
+  "ptsd",
+  "delusional_belief",
+  "selective_mutism",
+])
+
+export const VAMPIRE_TRAITS: TraitDef[] = [
+  {
+    key: "folkloric_bane",
+    name: "Folkloric Bane",
+    cost: -1,
+    maxTimes: 7,
+    description: "A classic vampiric weakness from folklore. Choose one each time you take this trait.",
+    requiresSubChoice: true,
+    subOptions: [
+      "Weakness to garlic",
+      "Willpower roll to enter homes uninvited",
+      "Hearing ringing bells or crowing of a rooster causes 1 HP damage",
+      "Willpower roll to cross running water",
+      "Weakness to salt",
+      "No mirror reflection",
+      "Your shadow is uncanny: moves too late, in wrong directions",
+    ],
+  },
+  {
+    key: "morph",
+    name: "Morph",
+    cost: 2,
+    description: "Can change your timeless appearance to adapt to the times. Spend 2 Blood per change consistent with some passage of time (up to 1 year). Changes apply and revert during daysleep.",
+  },
+  {
+    key: "prone_to_rage",
+    name: "Prone to Rage",
+    cost: -2,
+    description: "Suffer -2 to resist Rage Frenzy.",
+  },
+  {
+    key: "archaic",
+    name: "Archaic",
+    cost: -3,
+    description: "Cannot competently use modern technology. Computers, smartphones, elevators, cars — require assistance or a difficult roll.",
+  },
+  {
+    key: "ravenous",
+    name: "Ravenous",
+    cost: -3,
+    description: "Feeding without killing always requires a Willpower roll.",
+  },
+  {
+    key: "selective_taste",
+    name: "Selective Taste",
+    cost: null,
+    variableCost: true,
+    costOptions: [
+      [-1, "Broadly selective (e.g., 20-30 year old males)"],
+      [-2, "Selective (e.g., a specific ethnicity or profession)"],
+      [-3, "Very selective (e.g. young male doctors, widows, CEOs)"],
+      [-4, "Extremely selective (e.g. identical twins, murderers, cancer survivors)"],
+      [-5, "Near-impossible (e.g., olympians, pregnant women, heads of state)"],
+    ],
+    description: "Only feed on a specific type of mortal. Feeding on others costs 1-5 Willpower depending on proximity to desired prey.",
+    requiresDetail: true,
+    detailPrompt: "Describe your preferred prey type:",
+  },
+  {
+    key: "territorial",
+    name: "Territorial",
+    cost: -2,
+    description: "Every encroachment on your territory or property triggers a Rage Frenzy, or costs 2 Willpower.",
+  },
+  {
+    key: "stigmata",
+    name: "Stigmata",
+    cost: -1,
+    description: "Begin to bleed from your eyes when Blood reaches -4.",
+  },
+  {
+    key: "corpse_like",
+    name: "Corpse-Like",
+    cost: -2,
+    description: "Your appearance feels wrong and dead. Rolls relying on physical attractiveness or favorable first impressions are impeded.",
+  },
+  {
+    key: "monstrous",
+    name: "Monstrous",
+    cost: -3,
+    description: "Your Embrace changed you to an unnatural monster: you have fish-like eyes, or a deformed skull, or any other aesthetic change - this trait grants no physical advantages.",
+  },
+  {
+    key: "iron_gullet",
+    name: "Iron Gullet",
+    cost: 2,
+    description: "Can feed from cold blood, rancid blood, and fractionated plasma.",
+  },
+  {
+    key: "dead_stillness",
+    name: "Dead Stillness",
+    cost: 1,
+    description: "Can remain perfectly motionless for any length of time. Casual observers mistake you for a corpse or statue.",
+  },
+  {
+    key: "scent_hound",
+    name: "Scent Hound",
+    cost: 2,
+    description: "Can smell fresh blood from several rooms away and distinguish individuals by the scent of their blood.",
+  },
+  {
+    key: "infatuation",
+    name: "Infatuation",
+    cost: -1,
+    description: "Easily emotionally bonded to mortals, caring about them deeply.",
+  },
+  {
+    key: "painful_bite",
+    name: "Painful Bite",
+    cost: -2,
+    description: "The Kiss doesn't work — mortals experience only pain when bitten. You can still close wounds afterwards.",
+  },
+]
+
+export function getMortalTrait(key: string): TraitDef | undefined {
+  return MORTAL_TRAITS.find((t) => t.key === key)
+}
+
+export function getVampireTrait(key: string): TraitDef | undefined {
+  return VAMPIRE_TRAITS.find((t) => t.key === key)
+}
