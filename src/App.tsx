@@ -1,6 +1,9 @@
+import { useState } from "react"
 import { useCharacterStore } from "./state/characterStore"
 import { useNavStore, type NavPage } from "./state/navStore"
 import { CharacterSheet } from "./pages/sheet/CharacterSheet"
+import { Wizard } from "./pages/wizard/Wizard"
+import { STAGES } from "./pages/wizard/WizardNav"
 
 const NAV_OPTIONS: { id: NavPage; label: string }[] = [
   { id: "wizard", label: "⚡ Character Creator" },
@@ -23,8 +26,11 @@ function ComingSoon({ title }: { title: string }) {
 
 function Sidebar() {
   const character = useCharacterStore((s) => s.character)
+  const updateCharacter = useCharacterStore((s) => s.updateCharacter)
+  const resetCharacter = useCharacterStore((s) => s.resetCharacter)
   const page = useNavStore((s) => s.page)
   const goTo = useNavStore((s) => s.goTo)
+  const [resetOpen, setResetOpen] = useState(false)
 
   return (
     <aside className="app-sidebar">
@@ -54,6 +60,51 @@ function Sidebar() {
           </button>
         ))}
       </nav>
+
+      {page === "wizard" && (
+        <>
+          <hr />
+          <small style={{ color: "var(--text-muted)" }}>Creator Stages</small>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem", marginTop: "0.25rem" }}>
+            {Object.entries(STAGES).map(([numStr, label]) => {
+              const num = Number(numStr)
+              const icon = num === character.wizard_stage ? "●" : num < character.wizard_stage ? "✓" : "○"
+              return (
+                <button
+                  key={num}
+                  className="btn btn-secondary"
+                  style={{ textAlign: "left" }}
+                  onClick={() => updateCharacter((c) => { c.wizard_stage = num })}
+                >
+                  {icon} {num}. {label}
+                </button>
+              )
+            })}
+          </div>
+        </>
+      )}
+
+      <hr />
+      <div className="panel">
+        <button type="button" className="btn btn-secondary" style={{ width: "100%" }} onClick={() => setResetOpen((o) => !o)}>
+          ⚠ Reset Character
+        </button>
+        {resetOpen && (
+          <div style={{ marginTop: "0.5rem" }}>
+            <div className="alert alert-error">This will erase all character data.</div>
+            <button
+              className="btn btn-secondary"
+              onClick={() => {
+                resetCharacter()
+                goTo("wizard")
+                setResetOpen(false)
+              }}
+            >
+              Reset to blank
+            </button>
+          </div>
+        )}
+      </div>
     </aside>
   )
 }
@@ -75,7 +126,7 @@ function App() {
       <Sidebar />
       <main className="app-main">
         <Hero />
-        {page === "wizard" && <ComingSoon title="Character Creator" />}
+        {page === "wizard" && <Wizard />}
         {page === "sheet" && <CharacterSheet />}
         {page === "struggle" && <ComingSoon title="Struggle" />}
         {page === "rules" && <ComingSoon title="Rules" />}
