@@ -1,0 +1,376 @@
+/* Masquerade-inspired dark gothic theme — ported 1:1 from pulse/ui/theme.py.
+   Deep black canvas, blood crimson accent, parchment text, neo-noir purple undertones. */
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap");
+
+:root {
+  --font-body: "Crimson Pro", Georgia, serif;
+  --font-heading: "Cinzel", "Times New Roman", serif;
+
+  --bg-1: #08080a;
+  --bg-2: #12101a;
+  --bg-3: #1a0a10;
+  --bg-4: #0a0808;
+
+  --text: #d4c8b8;
+  --text-heading: #e8ddd0;
+  --text-muted: #9a8f82;
+  --text-label: #c9bdb0;
+
+  --accent: #c41e3a;
+  --accent-glow: rgba(196, 30, 58, 0.35);
+  --accent-glow-strong: rgba(196, 30, 58, 0.45);
+
+  --header-bg: rgba(8, 8, 10, 0.92);
+  --header-border: #4a1520;
+
+  --sidebar-bg-1: #0c0a0e;
+  --sidebar-bg-2: #140c12;
+  --sidebar-border: #5c1a28;
+  --sidebar-text: #c9bdb0;
+
+  --hero-border: #5c1a28;
+
+  --badge-bg-1: #3d1018;
+  --badge-bg-2: #6b1c2a;
+  --badge-text: #f0e6d8;
+  --badge-border: #8b2940;
+
+  --btn-primary-bg-1: #9b1c2e;
+  --btn-primary-bg-2: #6b1420;
+  --btn-primary-border: #c41e3a;
+  --btn-primary-text: #fff8f0;
+  --btn-primary-hover-bg-1: #b82238;
+  --btn-primary-hover-bg-2: #8b1c2a;
+
+  --btn-secondary-border: #5c4050;
+  --btn-secondary-text: var(--text);
+
+  --metric-bg: rgba(20, 12, 18, 0.85);
+  --metric-border: #4a2030;
+
+  --progress-bg-1: #6b1420;
+  --progress-bg-2: #c41e3a;
+
+  --panel-border: #3d2830;
+  --panel-bg: rgba(12, 10, 14, 0.6);
+
+  --divider: #4a2030;
+
+  --alert-bg: rgba(20, 12, 18, 0.75);
+  --alert-border: #4a2030;
+
+  /* Card / pill family used across trait lists, scheme cards, asset cards */
+  --card-bg: #120810;
+  --card-border: #5c1a28;
+  --panel-alt-bg: #1a0812;
+
+  --cost-positive-bg: #0a2010;
+  --cost-positive-text: #4a9a6a;
+  --cost-negative-bg: #2a0a10;
+  --cost-negative-text: #c41e3a;
+  --cost-zero-bg: #1a1a24;
+  --cost-zero-text: #9a8f82;
+
+  --scheme-card-border: #3d1828;
+  --asset-card-bg: #080c12;
+  --asset-card-border: #1a2838;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(165deg, var(--bg-1) 0%, var(--bg-2) 35%, var(--bg-3) 70%, var(--bg-4) 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+  letter-spacing: 0.04em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--divider);
+  margin: 1rem 0;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* ── Layout shell ─────────────────────────────────────────────────────────── */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  background: linear-gradient(180deg, var(--sidebar-bg-1) 0%, var(--sidebar-bg-2) 100%);
+  border-right: 1px solid var(--sidebar-border);
+  color: var(--sidebar-text);
+  width: 260px;
+  flex-shrink: 0;
+  padding: 1rem;
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  padding: 1.5rem 2rem;
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    flex-direction: column;
+  }
+  .app-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--sidebar-border);
+  }
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+
+.pulse-hero {
+  text-align: center;
+  padding: 0.5rem 0 1.5rem;
+  border-bottom: 1px solid var(--hero-border);
+  margin-bottom: 1.5rem;
+}
+
+.pulse-hero h1 {
+  font-size: 2.2rem;
+  color: var(--accent);
+  text-shadow: 0 0 24px var(--accent-glow);
+  margin: 0 0 0.2rem;
+}
+
+.pulse-hero .subtitle {
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+/* ── Step badge ───────────────────────────────────────────────────────────── */
+
+.pulse-step-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--badge-bg-1), var(--badge-bg-2));
+  color: var(--badge-text);
+  padding: 0.25rem 0.85rem;
+  border-radius: 2px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--badge-border);
+  margin-bottom: 0.75rem;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.45rem 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--btn-primary-bg-1) 0%, var(--btn-primary-bg-2) 100%);
+  border: 1px solid var(--btn-primary-border);
+  color: var(--btn-primary-text);
+  font-family: var(--font-heading);
+  letter-spacing: 0.06em;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, var(--btn-primary-hover-bg-1) 0%, var(--btn-primary-hover-bg-2) 100%);
+  box-shadow: 0 0 16px var(--accent-glow-strong);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--btn-secondary-border);
+  color: var(--btn-secondary-text);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--text-heading);
+}
+
+.btn-icon {
+  padding: 0.25rem 0.6rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ── Metric ───────────────────────────────────────────────────────────────── */
+
+.metric {
+  background: var(--metric-bg);
+  border: 1px solid var(--metric-border);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+}
+
+.metric-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.metric-value {
+  color: var(--text-heading);
+  font-size: 1.4rem;
+}
+
+/* ── Progress ─────────────────────────────────────────────────────────────── */
+
+.progress-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  height: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--progress-bg-1), var(--progress-bg-2));
+}
+
+/* ── Panels / expanders ───────────────────────────────────────────────────── */
+
+.panel {
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+  border-radius: 3px;
+  padding: 0.75rem 1rem;
+}
+
+/* ── Alerts ───────────────────────────────────────────────────────────────── */
+
+.alert {
+  background: var(--alert-bg);
+  border: 1px solid var(--alert-border);
+  border-radius: 2px;
+  color: var(--text);
+  padding: 0.6rem 1rem;
+  margin: 0.5rem 0;
+}
+
+.alert-error {
+  border-color: var(--cost-negative-text);
+  color: #f0b8be;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────────────────── */
+
+.tab-list {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--divider);
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.tab {
+  font-family: var(--font-heading);
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab[aria-selected="true"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ── Form labels ──────────────────────────────────────────────────────────── */
+
+label,
+.field-label {
+  color: var(--text-label);
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+  background: #0f0c12;
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  border-radius: 3px;
+  padding: 0.4rem 0.6rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 1px solid var(--accent);
+}
+
+/* ── Cards / pills ────────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 3px;
+  padding: 0.6rem 1rem;
+}
+
+.pill {
+  background: var(--cost-zero-bg);
+  color: var(--cost-zero-text);
+  padding: 0.3rem 0.7rem;
+  border-radius: 3px;
+  margin: 0.15rem 0;
+  display: block;
+}
+
+.pill-positive {
+  background: var(--cost-positive-bg);
+  color: var(--cost-positive-text);
+}
+
+.pill-negative {
+  background: var(--cost-negative-bg);
+  color: var(--cost-negative-text);
+}
+
+.dots {
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+}
