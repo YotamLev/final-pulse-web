@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { persist, createJSONStorage } from "zustand/middleware"
-import { charFromDict, charToDict, defaultCharacter, type Character } from "../models/character"
+import { charFromDict, charToDict, defaultCharacter, normalizeCharacter, type Character } from "../models/character"
 
 interface CharacterStore {
   character: Character
@@ -18,6 +18,7 @@ export const useCharacterStore = create<CharacterStore>()(
         set((state) => {
           const next = structuredClone(state.character)
           fn(next)
+          normalizeCharacter(next)
           return { character: next }
         }),
 

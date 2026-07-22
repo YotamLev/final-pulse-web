@@ -374,3 +374,29 @@ textarea:focus {
   font-size: 1.2rem;
   letter-spacing: 0.06em;
 }
+
+.caption {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.tracker-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.data-table th {
+  text-align: left;
+  padding: 0.25rem 0.5rem;
+}
+
+table.data-table td {
+  padding: 0.25rem 0.5rem;
+}
