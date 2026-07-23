@@ -85,7 +85,7 @@ export const QUICKSTARTS: Record<string, Quickstart> = {
     discipline_powers: {
       Presence: ["Awe", "Affect Mood", "Hypnotize"],
       Auspex: ["Impulse"],
-      Celerity: ["Speed", "The Still World"],
+      Celerity: ["Speed", "Blink"],
     },
     skill_dots: {
       "Basic Manipulation": 2, Persuasion: 1, "Court Etiquette": 1,
@@ -107,7 +107,7 @@ export const QUICKSTARTS: Record<string, Quickstart> = {
     discipline_levels: { Obfuscate: 3, Nightmare: 2, "Shadow Sorcery": 1 },
     discipline_powers: {
       Obfuscate: ["Fade", "Vanish", "Silent Hunter"],
-      Nightmare: ["Haunt Dream", "Lullaby"],
+      Nightmare: ["Haunting Dream", "Lullaby"],
       "Shadow Sorcery": ["Dim the Lights"],
     },
     skill_dots: {
@@ -130,7 +130,7 @@ export const QUICKSTARTS: Record<string, Quickstart> = {
     discipline_levels: { Potence: 3, Celerity: 2, Presence: 1 },
     discipline_powers: {
       Potence: ["Vigor", "Shockwave", "Bloody Strangle"],
-      Celerity: ["Speed", "The Still World"],
+      Celerity: ["Speed", "Blink"],
       Presence: ["Awe"],
     },
     skill_dots: {
@@ -176,7 +176,7 @@ export const QUICKSTARTS: Record<string, Quickstart> = {
     discipline_levels: { Auspex: 3, Nightmare: 1, Arrete: 2 },
     discipline_powers: {
       Auspex: ["Impulse", "Read Aura", "Telepathy"],
-      Nightmare: ["Haunt Dream"],
+      Nightmare: ["Haunting Dream"],
       Arrete: ["Calculating", "Borrowed Knowledge"],
     },
     skill_dots: {
