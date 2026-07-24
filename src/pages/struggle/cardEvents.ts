@@ -70,4 +70,4 @@ export const VALUE_TIERS: ValueTier[] = [
   { icon: "🂡", label: "Ace", meaning: "Can interrupt a rival's action" },
 ]
 
-export const ASSET_TYPES = ["Institution", "Servants", "Object", "Haven", "Herd"]
+export const ASSET_TYPES = ["Institution", "Servants", "Object", "Haven", "Herd", "Debts", "Territory"]
