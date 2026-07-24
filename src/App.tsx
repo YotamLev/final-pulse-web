@@ -6,6 +6,7 @@ import { Wizard } from "./pages/wizard/Wizard"
 import { STAGES } from "./pages/wizard/WizardNav"
 import { Struggle } from "./pages/struggle/Struggle"
 import { RulesPage } from "./pages/rules/RulesPage"
+import { LegalFooter } from "./components/LegalFooter"
 
 const NAV_OPTIONS: { id: NavPage; label: string }[] = [
   { id: "wizard", label: "⚡ Character Creator" },
@@ -95,6 +96,7 @@ function Sidebar() {
           </div>
         )}
       </div>
+      <LegalFooter />
     </aside>
   )
 }
