@@ -21,7 +21,7 @@ function Expander({ title, children }: { title: string; children: React.ReactNod
   )
 }
 
-const ASSET_TYPE_LABELS = ["🏛 Institutions", "👤 Servants", "📦 Objects", "📜 Debts", "🏠 Haven", "🐑 Herd"]
+const ASSET_TYPE_LABELS = ["🏛 Institutions", "👤 Servants", "📦 Objects", "📜 Debts", "🏠 Haven", "🐑 Herd", "🗺️ Territory"]
 
 export function RulesTab() {
   return (
@@ -45,7 +45,7 @@ export function RulesTab() {
 
       <h4>Assets</h4>
       <p>
-        Each side starts with their assets. Assets range from <b>1 to 5 dots</b> and fall into one of six types:
+        Each side starts with their assets. Assets range from <b>1 to 5 dots</b> and fall into one of seven types:
       </p>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.3rem" }}>
         {ASSET_TYPE_LABELS.map((label) => (
